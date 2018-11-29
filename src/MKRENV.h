@@ -17,6 +17,9 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#ifndef _MKRENV_H_
+#define _MKRENV_H_
+
 #include <Arduino.h>
 #include <Wire.h>
 
@@ -58,3 +61,5 @@ private:
 };
 
 extern ENVClass ENV;
+
+#endif
