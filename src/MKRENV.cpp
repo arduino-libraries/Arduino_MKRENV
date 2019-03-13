@@ -22,41 +22,40 @@
 #include "MKRENV.h"
 
 #define HTS221_ADDRESS   0x5F
-#define LPS25H_ADDRESS   0x5C
+#define LPS22HB_ADDRESS  0x5C
 #define VEML6075_ADDRESS 0x10
 
-#define LIGHT_SENSOR_PIN A3
+#define LIGHT_SENSOR_PIN A2
 
-#define HTS221_WHO_AM_I_REG        0x0f
-#define HTS221_CTRL1_REG           0x20
-#define HTS221_CTRL2_REG           0x21
-#define HTS221_STATUS_REG          0x27
-#define HTS221_HUMIDITY_OUT_L_REG  0x28
-#define HTS221_TEMP_OUT_L_REG      0x2a
-#define HTS221_H0_rH_x2_REG        0x30
-#define HTS221_H1_rH_x2_REG        0x31
-#define HTS221_T0_degC_x8_REG      0x32
-#define HTS221_T1_degC_x8_REG      0x33
-#define HTS221_T1_T0_MSB_REG       0x35
-#define HTS221_H0_T0_OUT_REG       0x36
-#define HTS221_H1_T0_OUT_REG       0x3a
-#define HTS221_T0_OUT_REG          0x3c
-#define HTS221_T1_OUT_REG          0x3e
+#define HTS221_WHO_AM_I_REG         0x0f
+#define HTS221_CTRL1_REG            0x20
+#define HTS221_CTRL2_REG            0x21
+#define HTS221_STATUS_REG           0x27
+#define HTS221_HUMIDITY_OUT_L_REG   0x28
+#define HTS221_TEMP_OUT_L_REG       0x2a
+#define HTS221_H0_rH_x2_REG         0x30
+#define HTS221_H1_rH_x2_REG         0x31
+#define HTS221_T0_degC_x8_REG       0x32
+#define HTS221_T1_degC_x8_REG       0x33
+#define HTS221_T1_T0_MSB_REG        0x35
+#define HTS221_H0_T0_OUT_REG        0x36
+#define HTS221_H1_T0_OUT_REG        0x3a
+#define HTS221_T0_OUT_REG           0x3c
+#define HTS221_T1_OUT_REG           0x3e
 
-#define LPS25H_WHO_AM_I_REG        0x0f
-#define LPS25H_CTRL1_REG           0x20
-#define LPS25H_CTRL2_REG           0x21
-#define LPS25H_STATUS_REG          0x27
-#define LPS25H_PRESS_OUT_XL_REG    0x28
-#define LPS25H_PRESS_OUT_L_REG     0x29
-#define LPS25H_PRESS_OUT_H_REG     0x2a    
+#define LPS22HB_WHO_AM_I_REG        0x0f
+#define LPS22HB_CTRL2_REG           0x11
+#define LPS22HB_STATUS_REG          0x27
+#define LPS22HB_PRESS_OUT_XL_REG    0x28
+#define LPS22HB_PRESS_OUT_L_REG     0x29
+#define LPS22HB_PRESS_OUT_H_REG     0x2a
 
-#define VEML6075_UV_CONF_REG       0x00
-#define VEML6075_UVA_DATA_REG      0x07
-#define VEML6075_UVB_DATA_REG      0x09
-#define VEML6075_UVCOMP1_REG       0x0a
-#define VEML6075_UVCOMP2_REG       0x0b
-#define VEML6075_ID_REG            0x0c
+#define VEML6075_UV_CONF_REG        0x00
+#define VEML6075_UVA_DATA_REG       0x07
+#define VEML6075_UVB_DATA_REG       0x09
+#define VEML6075_UVCOMP1_REG        0x0a
+#define VEML6075_UVCOMP2_REG        0x0b
+#define VEML6075_ID_REG             0x0c
 
 ENVClass::ENVClass(TwoWire  & wire, int lightSensorPin) :
   _wire(&wire),
@@ -74,9 +73,8 @@ int ENVClass::begin()
     return 0;
   }
 
-  if (i2cRead(LPS25H_ADDRESS, LPS25H_WHO_AM_I_REG) != 0xbd) {
+  if (i2cRead(LPS22HB_ADDRESS, LPS22HB_WHO_AM_I_REG) != 0xb1) {
     end();
-
     return 0;
   }
 
@@ -88,9 +86,8 @@ int ENVClass::begin()
 
   readHTS221Calibration();
 
-  // enable HTS221 and LPS25H
+  // enable HTS221
   i2cWrite(HTS221_ADDRESS, HTS221_CTRL1_REG, 0x80);
-  i2cWrite(LPS25H_ADDRESS, LPS25H_CTRL1_REG, 0x80);
 
   // configure VEML6075 for 100 ms
   i2cWriteWord(VEML6075_ADDRESS, VEML6075_UV_CONF_REG, 0x0010);
@@ -103,8 +100,7 @@ void ENVClass::end()
   // shutdown VEML6075
   i2cWriteWord(VEML6075_ADDRESS, VEML6075_UV_CONF_REG, 0x0001);
 
-  // disable HTS221 and LPS25H
-  i2cWrite(LPS25H_ADDRESS, LPS25H_CTRL1_REG, 0x00);
+  // disable HTS221
   i2cWrite(HTS221_ADDRESS, HTS221_CTRL1_REG, 0x00);
 
   _wire->end();
@@ -148,17 +144,17 @@ float ENVClass::readHumidity()
 float ENVClass::readPressure()
 {
   // trigger one shot
-  i2cWrite(LPS25H_ADDRESS, LPS25H_CTRL2_REG, 0x01);
+  i2cWrite(LPS22HB_ADDRESS, LPS22HB_CTRL2_REG, 0x01);
 
   // wait for completion
-  while ((i2cRead(LPS25H_ADDRESS, LPS25H_STATUS_REG) & 0x02) == 0) {
+  while ((i2cRead(LPS22HB_ADDRESS, LPS22HB_STATUS_REG) & 0x02) == 0) {
     yield();
   }
 
   // read value and convert
-  return (i2cRead(LPS25H_ADDRESS, LPS25H_PRESS_OUT_XL_REG) | 
-          (i2cRead(LPS25H_ADDRESS, LPS25H_PRESS_OUT_L_REG) << 8) | 
-          (i2cRead(LPS25H_ADDRESS, LPS25H_PRESS_OUT_H_REG) << 16)) / 40960.0;
+  return (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_XL_REG) | 
+          (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_L_REG) << 8) | 
+          (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_H_REG) << 16)) / 40960.0;
 }
 
 float ENVClass::readLux()
