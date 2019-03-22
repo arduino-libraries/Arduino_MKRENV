@@ -1,9 +1,10 @@
 #######################################
-# Syntax Coloring Map For MKRENV
+# Syntax Coloring Map For Arduino_MKRENV
 ####################################### 
 # Class
 #######################################
 
+Arduino_MKRENV	KEYWORD1
 MKRENV	KEYWORD1
 ENV	KEYWORD1
 

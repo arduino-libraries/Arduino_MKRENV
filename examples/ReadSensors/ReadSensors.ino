@@ -11,7 +11,7 @@
   This example code is in the public domain.
 */
 
-#include <MKRENV.h>
+#include <Arduino_MKRENV.h>
 
 void setup() {
   Serial.begin(9600);

@@ -1,6 +1,6 @@
 /*
-  This file is part of the MKRENV library.
-  Copyright (c) 2018 Arduino SA. All rights reserved.
+  This file is part of the Arduino_MKRENV library.
+  Copyright (c) 2019 Arduino SA. All rights reserved.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
