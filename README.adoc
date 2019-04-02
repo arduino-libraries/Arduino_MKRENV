@@ -2,6 +2,8 @@
 
 Allows you to read the temperature, humidity, pressure, light and UV sensors of your MKR ENV shield.
 
+For more information about this library please visit us at https://www.arduino.cc/en/Reference/Arduino_MKRENV
+
 == License ==
 
 Copyright (c) 2019 Arduino SA. All rights reserved.
