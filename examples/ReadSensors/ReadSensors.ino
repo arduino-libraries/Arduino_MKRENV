@@ -24,31 +24,43 @@ void setup() {
 }
 
 void loop() {
+  // read all the sensor values
+  float temperature = ENV.readTemperature();
+  float humidity    = ENV.readHumidity();
+  float pressure    = ENV.readPressure();
+  float lux         = ENV.readLux();
+  float uva         = ENV.readUVA();
+  float uvb         = ENV.readUVB();
+  float uvIndex     = ENV.readUVIndex();
+
+  // print each of the sensor values
   Serial.print("Temperature = ");
-  Serial.print(ENV.readTemperature());
+  Serial.print(temperature);
   Serial.println(" °C");
 
   Serial.print("Humidity    = ");
-  Serial.print(ENV.readHumidity());
+  Serial.print(humidity);
   Serial.println(" %");
 
   Serial.print("Pressure    = ");
-  Serial.print(ENV.readPressure());
+  Serial.print(pressure);
   Serial.println(" kPa");
 
   Serial.print("Lux .       = ");
-  Serial.println(ENV.readLux());
+  Serial.println(lux);
 
   Serial.print("UVA         = ");
-  Serial.println(ENV.readUVA());
+  Serial.println(uva);
 
   Serial.print("UVB         = ");
-  Serial.println(ENV.readUVB());
+  Serial.println(uvb);
 
   Serial.print("UV Index    = ");
-  Serial.println(ENV.readUVIndex());
+  Serial.println(uvIndex);
 
+  // print an empty line
   Serial.println();
 
+  // wait 1 second to print again
   delay(1000);
 }
