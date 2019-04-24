@@ -18,7 +18,7 @@ end	KEYWORD2
 readTemperature	KEYWORD2
 readHumidity	KEYWORD2
 readPressure	KEYWORD2
-readLux	KEYWORD2
+readIlluminance	KEYWORD2
 readUVA	KEYWORD2
 readUVB	KEYWORD2
 readUVIndex	KEYWORD2
