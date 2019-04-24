@@ -34,10 +34,13 @@ public:
   float readTemperature();
   float readHumidity();
   float readPressure();
-  float readLux();
+  float readIlluminance();
   float readUVA();
   float readUVB();
   float readUVIndex();
+
+  // deprecated, use readIlluminance() instead
+  float readLux() { return readIlluminance(); }
 
 private:
   int i2cRead(uint8_t address, uint8_t reg);

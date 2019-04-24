@@ -28,7 +28,7 @@ void loop() {
   float temperature = ENV.readTemperature();
   float humidity    = ENV.readHumidity();
   float pressure    = ENV.readPressure();
-  float lux         = ENV.readLux();
+  float illuminance = ENV.readIlluminance();
   float uva         = ENV.readUVA();
   float uvb         = ENV.readUVB();
   float uvIndex     = ENV.readUVIndex();
@@ -46,8 +46,9 @@ void loop() {
   Serial.print(pressure);
   Serial.println(" kPa");
 
-  Serial.print("Lux .       = ");
-  Serial.println(lux);
+  Serial.print("Illuminance = ");
+  Serial.print(illuminance);
+  Serial.println(" lx");
 
   Serial.print("UVA         = ");
   Serial.println(uva);

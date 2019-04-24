@@ -157,7 +157,7 @@ float ENVClass::readPressure()
           (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_H_REG) << 16)) / 40960.0;
 }
 
-float ENVClass::readLux()
+float ENVClass::readIlluminance()
 {
   // read analog value and convert to mV
   float mV = (analogRead(_lightSensorPin) * 3300.0) / 1023.0;
