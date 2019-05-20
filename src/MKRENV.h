@@ -23,6 +23,16 @@
 #include <Arduino.h>
 #include <Wire.h>
 
+enum {
+  FAHRENHEIT,
+  CELSIUS,
+  PSI,
+  MILLIBAR,
+  KILOPASCAL,
+  FOOTCANDLE,
+  METERCANDLE,
+  LUX = METERCANDLE
+};
 
 class ENVClass {
 public:
@@ -31,16 +41,16 @@ public:
   int begin();
   void end();
 
-  float readTemperature();
+  float readTemperature(int units = CELSIUS);
   float readHumidity();
-  float readPressure();
-  float readIlluminance();
+  float readPressure(int units = KILOPASCAL);
+  float readIlluminance(int units = LUX);
   float readUVA();
   float readUVB();
   float readUVIndex();
 
   // deprecated, use readIlluminance() instead
-  float readLux() { return readIlluminance(); }
+  float readLux() { return readIlluminance(LUX); }
 
 private:
   int i2cRead(uint8_t address, uint8_t reg);
