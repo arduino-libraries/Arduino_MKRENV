@@ -109,7 +109,7 @@ void ENVClass::end()
   pinMode(LIGHT_SENSOR_PIN, INPUT);
 }
 
-float ENVClass::readTemperature()
+float ENVClass::readTemperature(int units)
 {
   // trigger one shot
   i2cWrite(HTS221_ADDRESS, HTS221_CTRL2_REG, 0x01);
@@ -121,8 +121,12 @@ float ENVClass::readTemperature()
 
   // read value and convert
   int16_t tout = i2cRead16(HTS221_ADDRESS, HTS221_TEMP_OUT_L_REG);
-
-  return (tout * _hts221TemperatureSlope + _hts221TemperatureZero);
+  float reading = (tout * _hts221TemperatureSlope + _hts221TemperatureZero);
+  if (units == FAHRENHEIT) { // Fahrenheit = (Celsius * 9 / 5) + 32
+    return (reading * 9.0 / 5.0) + 32.0;
+  } else {
+    return reading;
+  }
 }
 
 float ENVClass::readHumidity()
@@ -141,7 +145,7 @@ float ENVClass::readHumidity()
   return (hout * _hts221HumiditySlope + _hts221HumidityZero);
 }
 
-float ENVClass::readPressure()
+float ENVClass::readPressure(int units)
 {
   // trigger one shot
   i2cWrite(LPS22HB_ADDRESS, LPS22HB_CTRL2_REG, 0x01);
@@ -151,19 +155,31 @@ float ENVClass::readPressure()
     yield();
   }
 
-  // read value and convert
-  return (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_XL_REG) | 
+  float reading = (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_XL_REG) |
           (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_L_REG) << 8) | 
           (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_H_REG) << 16)) / 40960.0;
+
+  if (units == MILLIBAR) { // 1 kPa = 10 MILLIBAR
+    return reading * 10;
+  } else if (units == PSI) {  // 1 kPa = 0.145038 PSI
+    return reading * 0.145038;
+  } else {
+    return reading;
+  }
 }
 
-float ENVClass::readIlluminance()
+float ENVClass::readIlluminance(int units)
 {
   // read analog value and convert to mV
   float mV = (analogRead(_lightSensorPin) * 3300.0) / 1023.0;
 
   // 2 mV per lux
-  return (mV / 2.0);
+  float reading = (mV / 2.0); // Readings are in Lux scale
+  if (units == FOOTCANDLE) { // 1 Lux = 0.092903 Foot-Candle
+    return reading * 0.092903;
+  } else {
+    return reading; // 1 Lux = 1 Meter-Candle
+  }
 }
 
 // UV formula's and constants based on:
