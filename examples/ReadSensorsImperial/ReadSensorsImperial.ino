@@ -26,7 +26,7 @@ void setup() {
 void loop() {
   // Passing in FAHRENHEIT as the unit parameter to ENV.readTemperature(...),
   // PSI to readPressure(...) and FOOTCANDLE to readIlluminance(...)
-  // allows you to read the sensors values in imperial units
+  // allows you to read the sensor values in imperial units
   float temperature = ENV.readTemperature(FAHRENHEIT);
   float humidity    = ENV.readHumidity();
   float pressure    = ENV.readPressure(PSI);
