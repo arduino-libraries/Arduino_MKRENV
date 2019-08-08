@@ -86,8 +86,8 @@ int ENVClass::begin()
 
   readHTS221Calibration();
 
-  // enable HTS221
-  i2cWrite(HTS221_ADDRESS, HTS221_CTRL1_REG, 0x80);
+  // turn on the HTS221 and enable Block Data Update
+  i2cWrite(HTS221_ADDRESS, HTS221_CTRL1_REG, 0x84);
 
   // configure VEML6075 for 100 ms
   i2cWriteWord(VEML6075_ADDRESS, VEML6075_UV_CONF_REG, 0x0010);
@@ -111,6 +111,9 @@ void ENVClass::end()
 
 float ENVClass::readTemperature(int units)
 {
+  // Wait for ONE_SHOT bit to be cleared by the hardware
+  while (i2cRead(HTS221_ADDRESS, HTS221_CTRL2_REG) & 0x01);
+
   // trigger one shot
   i2cWrite(HTS221_ADDRESS, HTS221_CTRL2_REG, 0x01);
 
@@ -131,6 +134,9 @@ float ENVClass::readTemperature(int units)
 
 float ENVClass::readHumidity()
 {
+  //Wait for ONE_SHOT bit to be cleared by the hardware
+  while (i2cRead(HTS221_ADDRESS, HTS221_CTRL2_REG) & 0x01);
+
   // trigger one shot
   i2cWrite(HTS221_ADDRESS, HTS221_CTRL2_REG, 0x01);
 
