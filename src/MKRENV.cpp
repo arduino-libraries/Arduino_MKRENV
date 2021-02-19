@@ -179,8 +179,8 @@ float ENVClass::readIlluminance(int units)
   // read analog value and convert to mV
   float mV = (analogRead(_lightSensorPin) * 3300.0) / 1023.0;
 
-  // 2 mV per lux
-  float reading = (mV / 2.0); // Readings are in Lux scale
+  // 5 mV per lux
+  float reading = (mV / 5.0); // Readings are in Lux scale
   if (units == FOOTCANDLE) { // 1 Lux = 0.092903 Foot-Candle
     return reading * 0.092903;
   } else {
