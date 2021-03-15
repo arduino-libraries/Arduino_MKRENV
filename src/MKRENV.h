@@ -67,6 +67,7 @@ private:
 private:
   TwoWire* _wire;
   int _lightSensorPin;
+  bool _isv2 = false;
 
   float _hts221HumiditySlope;
   float _hts221HumidityZero;
