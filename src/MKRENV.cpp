@@ -79,9 +79,7 @@ int ENVClass::begin()
   }
 
   if (i2cReadWord(VEML6075_ADDRESS, VEML6075_ID_REG) != 0x0026) {
-    end();
-
-    return 0;
+    _isv2 = true;
   }
 
   readHTS221Calibration();
@@ -236,6 +234,9 @@ float ENVClass::readUVIndex()
 
 int ENVClass::i2cRead(uint8_t address, uint8_t reg)
 {
+  if (_isv2 && address == VEML6075_ADDRESS) {
+    return 0;
+  }
   _wire->beginTransmission(address);
   _wire->write(reg);
   if (_wire->endTransmission(false) != 0) {
@@ -251,6 +252,9 @@ int ENVClass::i2cRead(uint8_t address, uint8_t reg)
 
 int ENVClass::i2cWrite(uint8_t address, uint8_t reg, uint8_t val)
 {
+  if (_isv2 && address == VEML6075_ADDRESS) {
+    return 0;
+  }
   _wire->beginTransmission(address);
   _wire->write(reg);
   _wire->write(val);
@@ -263,6 +267,9 @@ int ENVClass::i2cWrite(uint8_t address, uint8_t reg, uint8_t val)
 
 int ENVClass::i2cReadWord(uint8_t address, uint8_t reg)
 {
+  if (_isv2 && address == VEML6075_ADDRESS) {
+    return 0;
+  }
   _wire->beginTransmission(address);
   _wire->write(reg);
   if (_wire->endTransmission(false) != 0) {
@@ -278,6 +285,9 @@ int ENVClass::i2cReadWord(uint8_t address, uint8_t reg)
 
 int ENVClass::i2cWriteWord(uint8_t address, uint8_t reg, uint16_t val)
 {
+  if (_isv2 && address == VEML6075_ADDRESS) {
+    return 1;
+  }
   _wire->beginTransmission(address);
   _wire->write(reg);
   _wire->write(val & 0xff);
