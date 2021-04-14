@@ -163,7 +163,7 @@ float ENVClass::readPressure(int units)
           (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_L_REG) << 8) | 
           (i2cRead(LPS22HB_ADDRESS, LPS22HB_PRESS_OUT_H_REG) << 16)) / 40960.0;
 
-  if (units == MILLIBAR) { // 1 kPa = 10 MILLIBAR
+  if (units == MILLIBAR) { // 1 kPa = 10 millibar
     return reading * 10;
   } else if (units == PSI) {  // 1 kPa = 0.145038 PSI
     return reading * 0.145038;
@@ -178,15 +178,15 @@ float ENVClass::readIlluminance(int units)
   float mV = (analogRead(_lightSensorPin) * 3300.0) / 1023.0;
 
   // 5 mV per lux
-  float reading = (mV / 5.0); // Readings are in Lux scale
-  if (units == FOOTCANDLE) { // 1 Lux = 0.092903 Foot-Candle
+  float reading = (mV / 5.0); // Readings are in lux scale
+  if (units == FOOTCANDLE) { // 1 lux = 0.092903 foot-candle
     return reading * 0.092903;
   } else {
-    return reading; // 1 Lux = 1 Meter-Candle
+    return reading; // 1 lux = 1 meter-candle
   }
 }
 
-// UV formula's and constants based on:
+// UV formulas and constants based on:
 //   https://www.vishay.com/docs/84339/designingveml6075.pdf
 
 float ENVClass::readUVA()

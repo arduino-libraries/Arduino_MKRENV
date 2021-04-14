@@ -1,7 +1,7 @@
 /*
   MKR ENV Shield - Read Sensors Imperial
 
-  This example reads the sensors on-board the MKR ENV shield
+  This example reads the sensors on-board the MKR ENV Shield
   and prints them in imperial units to the Serial Monitor once a second.
 
   The circuit:
@@ -18,7 +18,7 @@ void setup() {
   while (!Serial);
 
   if (!ENV.begin()) {
-    Serial.println("Failed to initialize MKR ENV shield!");
+    Serial.println("Failed to initialize MKR ENV Shield!");
     while (1);
   }
 }
