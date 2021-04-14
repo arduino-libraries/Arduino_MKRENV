@@ -1,8 +1,13 @@
-= MKRENV Library for Arduino =
+:repository-owner: arduino-libraries
+:repository-name: Arduino_MKRENV
+
+= {repository-name} Library for Arduino =
+
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml/badge.svg["Spell Check status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml"]
 
 Allows you to read the temperature, humidity, pressure, light and UV sensors of your MKR ENV shield.
 
-For more information about this library please visit us at https://www.arduino.cc/en/Reference/Arduino_MKRENV
+For more information about this library please visit us at https://www.arduino.cc/en/Reference/{repository-name}
 
 == License ==
 
