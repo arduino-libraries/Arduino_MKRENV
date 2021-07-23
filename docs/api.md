@@ -32,13 +32,13 @@ if (!ENV.begin()) {
 #### See also
 
 * [end()](#end)
-* [readTemperature()](#readTemperature)
-* [readHumidity()](#readHumidity)
-* [readPressure()](#readPressure)
-* [readIlluminance()](#readIlluminance)
-* [readUVA()](#readUVA)
-* [readUVB()](#readUVB)
-* [readUVIndex()](#readUVIndex)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
+* [readPressure()](#readpressure)
+* [readIlluminance()](#readilluminance)
+* [readUVA()](#readuva)
+* [readUVB()](#readuvb)
+* [readUVIndex()](#readuvindex)
 
 ### `end()`
 
@@ -67,13 +67,13 @@ ENV.end();
 #### See also
 
 * [begin()](#begin)
-* [readTemperature()](#readTemperature)
-* [readHumidity()](#readHumidity)
-* [readPressure()](#readPressure)
-* [readIlluminance()](#readIlluminance)
-* [readUVA()](#readUVA)
-* [readUVB()](#readUVB)
-* [readUVIndex()](#readUVIndex)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
+* [readPressure()](#readpressure)
+* [readIlluminance()](#readilluminance)
+* [readUVA()](#readuva)
+* [readUVB()](#readuvb)
+* [readUVIndex()](#readuvindex)
 
 ### `readTemperature()`
 
@@ -105,12 +105,12 @@ Serial.println(" °C");
 
 * [begin()](#begin)
 * [end()](#end)
-* [readHumidity()](#readHumidity)
-* [readPressure()](#readPressure)
-* [readIlluminance()](#readIlluminance)
-* [readUVA()](#readUVA)
-* [readUVB()](#readUVB)
-* [readUVIndex()](#readUVIndex)
+* [readHumidity()](#readhumidity)
+* [readPressure()](#readpressure)
+* [readIlluminance()](#readilluminance)
+* [readUVA()](#readuva)
+* [readUVB()](#readuvb)
+* [readUVIndex()](#readuvindex)
 
 ### `readHumidity()`
 
@@ -142,12 +142,12 @@ Serial.println(" %");
 
 * [begin()](#begin)
 * [end()](#end)
-* [readTemperature()](#readTemperature)
-* [readPressure()](#readPressure)
-* [readIlluminance()](#readIlluminance)
-* [readUVA()](#readUVA)
-* [readUVB()](#readUVB)
-* [readUVIndex()](#readUVIndex)
+* [readTemperature()](#readtemperature)
+* [readPressure()](#readpressure)
+* [readIlluminance()](#readilluminance)
+* [readUVA()](#readuva)
+* [readUVB()](#readuvb)
+* [readUVIndex()](#readuvindex)
 
 ### `readPressure()`
 
@@ -179,12 +179,12 @@ Serial.println(" kPa");
 
 * [begin()](#begin)
 * [end()](#end)
-* [readTemperature()](#readTemperature)
-* [readHumidity()](#readHumidity)
-* [readIlluminance()](#readIlluminance)
-* [readUVA()](#readUVA)
-* [readUVB()](#readUVB)
-* [readUVIndex()](#readUVIndex)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
+* [readIlluminance()](#readilluminance)
+* [readUVA()](#readuva)
+* [readUVB()](#readuvb)
+* [readUVIndex()](#readuvindex)
 
 ### `readIlluminance()`
 
@@ -215,12 +215,12 @@ Serial.println(ENV.readIlluminance());
 
 * [begin()](#begin)
 * [end()](#end)
-* [readTemperature()](#readTemperature)
-* [readHumidity()](#readHumidity)
-* [readPressure()](#readPressure)
-* [readUVA()](#readUVA)
-* [readUVB()](#readUVB)
-* [readUVIndex()](#readUVIndex)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
+* [readPressure()](#readpressure)
+* [readUVA()](#readuva)
+* [readUVB()](#readuvb)
+* [readUVIndex()](#readuvindex)
 
 ### `readUVA()`
 
@@ -251,12 +251,12 @@ Serial.println(ENV.readUVA());
 
 * [begin()](#begin)
 * [end()](#end)
-* [readTemperature()](#readTemperature)
-* [readHumidity()](#readHumidity)
-* [readPressure()](#readPressure)
-* [readIlluminance()](#readIlluminance)
-* [readUVB()](#readUVB)
-* [readUVIndex()](#readUVIndex)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
+* [readPressure()](#readpressure)
+* [readIlluminance()](#readilluminance)
+* [readUVB()](#readuvb)
+* [readUVIndex()](#readuvindex)
 
 ### `readUVB()`
 
@@ -287,12 +287,12 @@ Serial.println(ENV.readUVB());
 
 * [begin()](#begin)
 * [end()](#end)
-* [readTemperature()](#readTemperature)
-* [readHumidity()](#readHumidity)
-* [readPressure()](#readPressure)
-* [readIlluminance()](#readIlluminance)
-* [readUVA()](#readUVA)
-* [readUVIndex()](#readUVIndex)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
+* [readPressure()](#readpressure)
+* [readIlluminance()](#readilluminance)
+* [readUVA()](#readuva)
+* [readUVIndex()](#readuvindex)
 
 ### `readUVIndex()`
 
@@ -323,9 +323,9 @@ Serial.println(ENV.readUVIndex());
 
 * [begin()](#begin)
 * [end()](#end)
-* [readTemperature()](#readTemperature)
-* [readHumidity()](#readHumidity)
-* [readPressure()](#readPressure)
-* [readIlluminance()](#readIlluminance)
-* [readUVA()](#readUVA)
-* [readUVB()](#readUVB)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
+* [readPressure()](#readpressure)
+* [readIlluminance()](#readilluminance)
+* [readUVA()](#readuva)
+* [readUVB()](#readuvb)
