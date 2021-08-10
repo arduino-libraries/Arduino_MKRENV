@@ -98,6 +98,9 @@ void ENVClass::end()
   // shutdown VEML6075
   i2cWriteWord(VEML6075_ADDRESS, VEML6075_UV_CONF_REG, 0x0001);
 
+  // refresh the content of HTS221's internal registers via BOOT bit
+  i2cWrite(HTS221_ADDRESS, HTS221_CTRL2_REG, 0x80);
+
   // disable HTS221
   i2cWrite(HTS221_ADDRESS, HTS221_CTRL1_REG, 0x00);
 
