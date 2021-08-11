@@ -30,6 +30,7 @@
 #define HTS221_WHO_AM_I_REG         0x0f
 #define HTS221_CTRL1_REG            0x20
 #define HTS221_CTRL2_REG            0x21
+#define HTS221_CTRL3_REG            0x22
 #define HTS221_STATUS_REG           0x27
 #define HTS221_HUMIDITY_OUT_L_REG   0x28
 #define HTS221_TEMP_OUT_L_REG       0x2a
@@ -86,6 +87,10 @@ int ENVClass::begin()
 
   // turn on the HTS221 and enable Block Data Update
   i2cWrite(HTS221_ADDRESS, HTS221_CTRL1_REG, 0x84);
+
+  // Disable HTS221_DRDY by default and make the output open drain
+  // This allows to use pin D6 for other purposes (e.g. LED_BUILTIN on the Arduino MKR WAN 1300)
+  i2cWrite(HTS221_ADDRESS, HTS221_CTRL3_REG, 0x40);
 
   // configure VEML6075 for 100 ms
   i2cWriteWord(VEML6075_ADDRESS, VEML6075_UV_CONF_REG, 0x0010);
