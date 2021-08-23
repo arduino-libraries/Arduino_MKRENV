@@ -1,6 +1,6 @@
 # Arduino MKR ENV library
 
-The Arduino MKR ENV library allows you to read the sensors on the MKR ENV Shield. It manages the different interfaces used by the sensors on the shield to give you an uniform and simple set of functions to read them. The library takes care of the calculations needed to produce values in the requested units. The values returned are signed floats.
+The Arduino MKR ENV library allows you to read the sensors on the [MKR ENV Shield](https://store.arduino.cc/mkr-env-shield). It manages the different interfaces used by the sensors on the shield to give you an uniform and simple set of functions to read them. The library takes care of the calculations needed to produce values in the requested units. The values returned are signed floats.
 
 To use this library:
 
