@@ -329,3 +329,38 @@ Serial.println(ENV.readUVIndex());
 * [readIlluminance()](#readilluminance)
 * [readUVA()](#readuva)
 * [readUVB()](#readuvb)
+
+### `readLux()`
+
+#### Description
+Read the light sensor’s value.
+
+#### Syntax
+
+```
+ENV.readLux()
+```
+
+#### Parameters
+None
+
+#### Returns
+The light sensor’s value in Lux.
+
+#### Example
+
+```
+Serial.print("Lux: ");
+Serial.println(ENV.readLux());
+```
+
+#### See also
+* [begin()](#begin)
+* [end()](#end)
+* [readTemperature()](#readtemperature)
+* [readHumidity()](#readhumidity)
+* [readPressure()](#readpressure)
+* [readIlluminance()](#readilluminance)
+* [readUVA()](#readuva)
+* [readUVB()](#readuvb)
+* [readLux()](#readlux)
