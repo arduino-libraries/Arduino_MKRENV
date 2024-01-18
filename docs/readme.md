@@ -11,7 +11,7 @@ To use this library:
 The Arduino MKR ENV library takes care of the sensor initialization and sets its values as follows:
 
 - Absolute pressure range: 260 to 1260 hPa.
-- Humidity range: 0 to 100%
+- Humidity range: 0 to 100% relative humidity (rH).
 - Humidity accuracy: ± 3.5% rH, 20 to +80% rH.
 - Temperature range -40 to 120 °C. 
 - Temperature accuracy: ± 0.5 °C from 15 to 40 °C.
