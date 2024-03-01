@@ -114,7 +114,7 @@ Serial.println(" °C");
 
 ### `readHumidity()`
 
-Read the humidity sensor's value.
+Read the HTS221 sensor's relative humidity (rH), and returns it as a percentage. Read more about relative humidity in [this article](https://www.edinformatics.com/math_science/what-is-humidity.html).
 
 #### Syntax 
 
@@ -128,7 +128,7 @@ None.
 
 #### Returns
 
-The temperature sensor’s humidity value as a percentage.
+Returns the relative humidity (rH) in percentage. 
 
 #### Example
 

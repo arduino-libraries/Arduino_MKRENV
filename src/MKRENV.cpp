@@ -82,7 +82,9 @@ int ENVClass::begin()
   if (i2cReadWord(VEML6075_ADDRESS, VEML6075_ID_REG) != 0x0026) {
     _isv2 = true;
   }
-
+  
+  delay(1); 
+  
   readHTS221Calibration();
 
   // turn on the HTS221 and enable Block Data Update

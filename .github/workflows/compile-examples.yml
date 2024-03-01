@@ -67,10 +67,10 @@ jobs:
             platforms: |
               - name: arduino:samd
             artifact-name-suffix: arduino-samd-mkrvidor4000
-          - fqbn: arduino:mbed_portenta:envie_m4
+          - fqbn: arduino:mbed_portenta:envie_m7:target_core=cm4
             platforms: |
               - name: arduino:mbed_portenta
-            artifact-name-suffix: arduino-mbed_portenta-envie_m4
+            artifact-name-suffix: arduino-mbed_portenta-envie_m7-target_code-cm4
           - fqbn: arduino:mbed_portenta:envie_m7
             platforms: |
               - name: arduino:mbed_portenta
@@ -78,7 +78,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Compile examples
         uses: arduino/compile-sketches@v1
@@ -97,7 +97,7 @@ jobs:
           sketches-report-path: ${{ env.SKETCHES_REPORTS_PATH }}
 
       - name: Save sketches report as workflow artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
           path: ${{ env.SKETCHES_REPORTS_PATH }}
